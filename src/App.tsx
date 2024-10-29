@@ -9,12 +9,17 @@ function App() {
 
   useEffect(() => {
     const book = ePub("https://zfzqwolxrejrzidhmsai.supabase.co/storage/v1/object/public/pages/books/GROOTSLANG_BEMBA.epub")
-    const rendition = book.renderTo(epubRef.current as HTMLDivElement, {width: 600, height: 900});
+    const rendition = book.renderTo(epubRef.current as HTMLDivElement , {
+      manager: "continuous",
+      flow: "scrolled",
+      width: "100%",
+      height: "100%"
+    });
     rendition.display();
   },[])
 
   return (
-    <div ref={epubRef}>
+    <div ref={epubRef} style={{ width:"100vw",height: "100vh",overflow: "auto" }}>
 
 
     </div>
