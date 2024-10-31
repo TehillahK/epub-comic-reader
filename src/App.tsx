@@ -1,9 +1,12 @@
 import ePub from "epubjs";
 
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef} from "react";
+
 
 function App() {
   const epubRef = useRef<HTMLDivElement|null>(null);
+
+
 
 
 
@@ -12,17 +15,28 @@ function App() {
     const rendition = book.renderTo(epubRef.current as HTMLDivElement , {
       manager: "continuous",
       flow: "scrolled",
-      width: "100%",
+      width: "100vw",
       height: "100%"
     });
     rendition.display();
+
   },[])
 
   return (
-    <div ref={epubRef} style={{ width:"100vw",height: "100vh",overflow: "auto" }}>
+      <div>
+        <div style={{display: "flex", flexFlow: "row", alignItems: "center"}}>
+             Menu
+        </div>
+
+            <div ref={epubRef} style={{ width:"100vw",height: "100vh",overflow: "auto" }}>
 
 
-    </div>
+
+            </div>
+
+
+      </div>
+
   )
 }
 
