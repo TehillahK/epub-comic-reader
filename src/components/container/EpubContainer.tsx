@@ -17,8 +17,28 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
         });
        // epubRef.current?.querySelector("")
         console.log(rendition);
+        rendition.themes.default(
+            {
+                img:{
+                    width:"100%",
+                    'max-width': '100% !important',
+                },
+                h1:{
+                    display:"none",
+                    padding:0,
+                    margin:0,
+                },
+                nav: {
+                    display: "none",
+                },
+                body:{
+                   padding:0,
+                    margin:0,
+                }
+            }
+        )
          //rendition.views()[2].display()
-         rendition.display();
+         rendition.display().then((r)=>r);
 
         return () => {
              rendition.destroy();
@@ -27,7 +47,7 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
     },[])
 
   return (
-      <div ref={epubRef} style={{width: "100vw", height: "100vh", overflow: "auto",flexDirection:"column",justifyContent:"center"}}>
+      <div className={"comic-page"} ref={epubRef} style={{width: "100vw", height: "100vh", overflow: "auto",flexDirection:"column",justifyContent:"center"}}>
 
 
       </div>
