@@ -16,7 +16,7 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
             height: "100%"
         });
        // epubRef.current?.querySelector("")
-        console.log(rendition);
+   //     console.log(rendition);
         rendition.themes.default(
             {
                 img:{

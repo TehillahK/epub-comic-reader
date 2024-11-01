@@ -1,0 +1,21 @@
+.navbar{
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 10rem;
+    border-bottom-color: black;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.navbar-logo{
+    height: 60px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.navbar-link{
+
+}

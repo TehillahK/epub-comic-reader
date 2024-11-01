@@ -9,15 +9,28 @@ function App() {
 
 
   return (
-      <div>
-        <div style={{display: "flex", flexFlow: "row", alignItems: "center"}}>
-             Menu
-        </div>
+      <>
+          <nav className="navbar">
+              <div className="navbar-brand">
+                 <img
+                     src={"https://zfzqwolxrejrzidhmsai.supabase.co/storage/v1/object/public/pages/cover/HavenSun,20Oct202417:59:40GMTcover.png"}
+                    alt={"logo"}
+                     className="navbar-logo"
 
-           <EpubContainer fileUrl={sampleFile} />
+                 />
+              </div>
+
+                  <a className="navbar-link" href="#">
+                      Settings
+                  </a>
 
 
-      </div>
+          </nav>
+
+          <EpubContainer fileUrl={sampleFile}/>
+
+
+      </>
 
   )
 }
