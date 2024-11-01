@@ -1,9 +1,14 @@
 import {useEffect, useRef} from "react";
 import ePub from "epubjs";
+import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
 const EpubContainer = ({fileUrl}:EpubPropType) => {
 
     const epubRef = useRef<HTMLDivElement|null>(null);
+
+
+
+
 
 
 
@@ -20,8 +25,9 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
         rendition.themes.default(
             {
                 img:{
-                    width:"100%",
+                    width:"90%",
                     'max-width': '100% !important',
+                    willChange: "transform !important",
                 },
                 h1:{
                     display:"none",
@@ -34,6 +40,7 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
                 body:{
                    padding:0,
                     margin:0,
+                   // willChange: "transform !important",
                 }
             }
         )
@@ -47,16 +54,32 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
     },[])
 
   return (
-      <div className={"comic-page"} ref={epubRef} style={{width: "100vw", height: "100vh", overflow: "auto",flexDirection:"column",justifyContent:"center"}}>
+          <TransformWrapper>
+              <TransformComponent>
+                  <div
+                      className={"comic-page"}
+                       ref={epubRef}
+                       style={{
+                            width: "100vw",
+                            height: "100vh",
+                            overflow: "auto",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                           willChange: "transform",
+                       }}
+
+                  >
+                  </div>
+              </TransformComponent>
+          </TransformWrapper>
 
 
-      </div>
 
   )
 }
 
 
-type EpubPropType ={
+type EpubPropType = {
     fileUrl: string,
 }
 

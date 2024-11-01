@@ -1,8 +1,26 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x:hidden;
+}
+
+
 .navbar{
     height: 60px;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 99%;
     border-radius: 10rem;
     border-bottom-color: black;
     align-items: center;
@@ -17,5 +35,25 @@
 }
 
 .navbar-link{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-link:hover{
+    color: blue;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(151, 151, 151, 0);
+    padding: 50px;
+    z-index: 1000;
+    border-radius: 10px;
+    border-color: black;
 
 }
