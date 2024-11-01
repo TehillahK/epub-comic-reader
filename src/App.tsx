@@ -1,26 +1,12 @@
-import ePub from "epubjs";
 
-import { useEffect, useRef} from "react";
+import EpubContainer from "./components/container/EpubContainer.tsx";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import sampleFile from "./samples/haven.epub"
 
 function App() {
-  const epubRef = useRef<HTMLDivElement|null>(null);
 
-
-
-
-
-  useEffect(() => {
-    const book = ePub("https://zfzqwolxrejrzidhmsai.supabase.co/storage/v1/object/public/pages/books/GROOTSLANG_BEMBA.epub")
-    const rendition = book.renderTo(epubRef.current as HTMLDivElement , {
-      manager: "continuous",
-      flow: "scrolled",
-      width: "100vw",
-      height: "100%"
-    });
-    rendition.display();
-
-  },[])
 
   return (
       <div>
@@ -28,11 +14,7 @@ function App() {
              Menu
         </div>
 
-            <div ref={epubRef} style={{ width:"100vw",height: "100vh",overflow: "auto" }}>
-
-
-
-            </div>
+           <EpubContainer fileUrl={sampleFile} />
 
 
       </div>
