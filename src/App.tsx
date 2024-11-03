@@ -17,7 +17,6 @@ function App({title = "Title", chapterNum = 0}: {title: string, chapterNum: numb
 
     const [isSpread, setIsSpread] = useState<boolean>(false);
 
-    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const openSettings =()=>{
         setShowSettings(true);
@@ -36,12 +35,16 @@ function App({title = "Title", chapterNum = 0}: {title: string, chapterNum: numb
         setIsSpread(isSpread);
     }
 
+    const nextPage=()=>{
+
+    }
+
     useEffect(() => {
 
     }, [renderOption]);
 
     return (
-      <>
+      <div style={{width:"100vw", height:"100vh"}}>
           <Nav
               title={title}
               chapterNum={chapterNum}
@@ -53,10 +56,9 @@ function App({title = "Title", chapterNum = 0}: {title: string, chapterNum: numb
               renderOption={renderOption}
           />
 
-          {showSettings && createPortal(<Settings onClose={closeSettings} />,document.body)}
 
 
-      </>
+      </div>
 
   )
 }
