@@ -14,7 +14,8 @@
     "epubjs": "^0.3.93",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-zoom-pan-pinch": "^3.6.1"
+    "react-zoom-pan-pinch": "^3.6.1",
+    "zoomable-div": "^0.11.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
