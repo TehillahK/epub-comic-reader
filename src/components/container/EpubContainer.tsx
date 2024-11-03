@@ -1,9 +1,10 @@
 import {useEffect, useRef} from "react";
 import ePub from "epubjs";
 
-import {Space} from "zoomable-div";
 
-const EpubContainer = ({fileUrl}:EpubPropType) => {
+import Rendition from "../../types/rendition.ts";
+
+const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
 
     const epubRef = useRef<HTMLDivElement|null>(null);
 
@@ -15,12 +16,10 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
 
     useEffect(() => {
         const book = ePub(fileUrl);
-        const rendition = book.renderTo(epubRef.current as HTMLDivElement , {
-            manager: "continuous",
-            flow: "scrolled",
-            width: "100vw",
-            height: "100%"
-        });
+        const rendition = book.renderTo(
+            epubRef.current as HTMLDivElement ,
+            renderOption
+        );
        // epubRef.current?.querySelector("")
    //     console.log(rendition);
         rendition.themes.default(
@@ -54,7 +53,7 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
              rendition.destroy();
         }
 
-    },[])
+    },[renderOption])
 
   return (
 
@@ -85,6 +84,7 @@ const EpubContainer = ({fileUrl}:EpubPropType) => {
 
 type EpubPropType = {
     fileUrl: string,
+    renderOption: Rendition;
 }
 
 export default EpubContainer;
