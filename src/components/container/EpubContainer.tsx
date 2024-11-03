@@ -88,8 +88,18 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
                             }}
 
                         >
-                            <button ref={prevPageRef}>Previous</button>
-                            <button ref={nextPageRef}>next</button>
+                            <div className={"page-controller"}>
+                                <div>
+                                    <button ref={prevPageRef}>
+                                        Previous
+                                    </button>
+                                </div>
+                                <div>
+                                    <button ref={nextPageRef}>
+                                        next
+                                    </button>
+                                </div>
+                            </div>
 
                         </div>
 

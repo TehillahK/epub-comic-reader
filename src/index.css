@@ -130,3 +130,14 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+
+.page-controller{
+    display: flex;
+    flex-direction: row;
+    width: 99%;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 20;
+    top: 85%;
+}
