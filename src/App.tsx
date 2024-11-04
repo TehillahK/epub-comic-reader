@@ -5,8 +5,7 @@ import "./index.css"
 // @ts-expect-error
 import sampleFile from "./samples/haven.epub"
 import {useEffect, useRef, useState} from "react";
-import Settings from "./components/settings/Settings.tsx";
-import {createPortal} from "react-dom";
+=
 import Nav from "./components/navbar/Nav.tsx";
 import Rendition from "./types/rendition.ts";
 import {scrolledRendition, spreadRendition} from "./utils/renditions.ts";
@@ -35,9 +34,7 @@ function App({title = "Title", chapterNum = 0}: {title: string, chapterNum: numb
         setIsSpread(isSpread);
     }
 
-    const nextPage=()=>{
 
-    }
 
     useEffect(() => {
 

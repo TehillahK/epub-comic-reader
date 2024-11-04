@@ -3,6 +3,7 @@ import ePub from "epubjs";
 
 
 import Rendition from "../../types/rendition.ts";
+import Controller from "./spread-controller/Controller.tsx";
 
 const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
 
@@ -22,10 +23,12 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
         rendition.themes.default(
             {
                 img:{
-                    width:"100% !important",
+                  width:"100vw !important",
                     'max-width': '100% !important',
                     willChange: "transform !important",
-                    //height:"100vh !important",
+                  //  height:"100vh !important",
+                 //   'max-height':'80% !important',
+                    objectFit: "none !important",
                 },
                 h1:{
                     display:"none",
@@ -36,11 +39,12 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
                     display: "none !important",
                 },
                 body:{
-                    padding:"2px !important",
+                    padding:"auto",
                     margin:"0px !important",
                    // willChange: "transform !important",
-                    columnWidth:"100% !important",
-                    columnGap:"0px !important",
+
+                    height:"100vh !important",
+
                 }
             }
         )
@@ -85,21 +89,16 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
                                 flexDirection: "column",
                                 justifyContent: "center",
                                 willChange: "transform",
+                                padding: "0px !important",
+                                margin: "0px !important",
                             }}
 
                         >
-                            <div className={"page-controller"}>
-                                <div>
-                                    <button ref={prevPageRef}>
-                                        Previous
-                                    </button>
-                                </div>
-                                <div>
-                                    <button ref={nextPageRef}>
-                                        next
-                                    </button>
-                                </div>
-                            </div>
+                            {
+                                renderOption.flow !== "scrolled"?(
+                                    <Controller nextPageRef={nextPageRef} prevPageRef={prevPageRef}  />
+                                ):""
+                            }
 
                         </div>
 
@@ -113,7 +112,7 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
 
 type EpubPropType = {
     fileUrl: string,
-    renderOption: Rendition;
+    renderOption: Rendition
 }
 
 export default EpubContainer;
