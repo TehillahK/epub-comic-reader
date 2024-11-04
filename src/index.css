@@ -20,7 +20,6 @@
 body {
     font-family: 'Roboto', sans-serif;
 
-
     width:100vw;
 }
 
@@ -140,4 +139,10 @@ input:checked + .slider:before {
     position: absolute;
     z-index: 20;
     top: 85%;
+}
+
+.page-slider{
+
+    width:80%;
+
 }
