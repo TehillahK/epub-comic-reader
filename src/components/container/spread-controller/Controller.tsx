@@ -1,6 +1,10 @@
-import {LegacyRef} from "react";
+import {LegacyRef, useEffect} from "react";
 
-const Controller = ({prevPageRef,nextPageRef}:ControllerProps) => {
+const Controller = ({prevPageRef,nextPageRef,pageNum,totalPages}:ControllerProps) => {
+    useEffect(
+        () => {
+
+    },[pageNum]);
     return (
         <div className={"page-controller"}>
             <div>
@@ -8,8 +12,18 @@ const Controller = ({prevPageRef,nextPageRef}:ControllerProps) => {
                 Previous
                 </button>
             </div>
-
-            <input type="range" min="1" max="100" value="1" className="page-slider" />
+            <div>
+                <input
+                    type={"range"}
+                    min={1}
+                    max={totalPages}
+                    value={pageNum}
+                    className={"page-slider"}
+                    onChange={(e) => {
+                        e.persist();
+                    }}
+                />
+            </div>
             <div>
                 <button ref={nextPageRef}>
                 next
@@ -20,6 +34,8 @@ const Controller = ({prevPageRef,nextPageRef}:ControllerProps) => {
 }
 
 type ControllerProps = {
+    pageNum: number,
+    totalPages: number,
     prevPageRef:LegacyRef<HTMLButtonElement>,
     nextPageRef: LegacyRef<HTMLButtonElement>
 }

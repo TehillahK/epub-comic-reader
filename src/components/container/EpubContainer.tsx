@@ -1,15 +1,18 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import ePub from "epubjs";
 
 
 import Rendition from "../../types/rendition.ts";
 import Controller from "./spread-controller/Controller.tsx";
+import {scrollTheme, spreadTheme} from "./utils/themes/themes.ts";
 
 const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
 
     const epubRef = useRef<HTMLDivElement|null>(null);
     const prevPageRef = useRef<HTMLButtonElement | null>(null);
     const nextPageRef = useRef<HTMLButtonElement | null>(null);
+    const [pageNum, setPageNum] = useState<number>(0);
+    const [totalPages, setTotalPages] = useState<number>(0);
 
 
     useEffect(() => {
@@ -18,36 +21,13 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
             epubRef.current as HTMLDivElement ,
             renderOption
         );
-       // epubRef.current?.querySelector("")
-   //     console.log(rendition);
+
         rendition.themes.default(
-            {
-                img:{
-                  width:"100vw !important",
-                    'max-width': '100% !important',
-                    willChange: "transform !important",
-                  //  height:"100vh !important",
-                 //   'max-height':'80% !important',
-                    objectFit: "none !important",
-                },
-                h1:{
-                    display:"none",
-                    padding:"0px",
-                    margin:"0px",
-                },
-                nav: {
-                    display: "none !important",
-                },
-                body:{
-                    padding:"auto",
-                    margin:"0px !important",
-                   // willChange: "transform !important",
-
-                    height:"100vh !important",
-
-                }
-            }
+            renderOption.flow === "scrolled"? scrollTheme: spreadTheme,
         )
+        if(!pageNum){
+            setTotalPages(book.locations.length());
+        }
 
 
          //rendition.views()[2].display()
@@ -55,10 +35,12 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
 
         const prevPage =()=>{
             rendition.prev().then(r=>r);
+            setPageNum(rendition.currentLocation().index);
         }
 
         const nextPage =()=>{
-            rendition.next().then(r=>r);;
+            rendition.next().then(r=>r);
+            setPageNum(rendition.currentLocation().index);
         }
 
         prevPageRef?.current?.addEventListener("click", prevPage);
@@ -96,7 +78,12 @@ const EpubContainer = ({fileUrl, renderOption}:EpubPropType) => {
                         >
                             {
                                 renderOption.flow !== "scrolled"?(
-                                    <Controller nextPageRef={nextPageRef} prevPageRef={prevPageRef}  />
+                                    <Controller
+                                        pageNum={pageNum}
+                                        totalPages={totalPages}
+                                        nextPageRef={nextPageRef}
+                                        prevPageRef={prevPageRef}
+                                    />
                                 ):""
                             }
 
